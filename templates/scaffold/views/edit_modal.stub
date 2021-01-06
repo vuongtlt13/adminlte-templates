@@ -1,0 +1,45 @@
+<div class="modal fade" id="$MODEL_NAME_CAMEL$-edit-modal">
+    <form id="$MODEL_NAME_CAMEL$-edit-form" method="POST" data-template-action="{{route('$MODEL_NAME_PLURAL_CAMEL$.update', '%s')}}">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">@lang('crud.add_new') @lang('models/$MODEL_NAME_CAMEL$.singular')</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="row">
+                        @include('$NS_VIEW_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.fields')
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </form>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+@push('scripts')
+    <script type="text/javascript">
+        var $MODEL_NAME_CAMEL$EditModal = $('#$MODEL_NAME_CAMEL$-edit-modal');
+        var $MODEL_NAME_CAMEL$EditForm = $('#$MODEL_NAME_CAMEL$-edit-modal #$MODEL_NAME_CAMEL$-edit-form');
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $MODEL_NAME_CAMEL$EditForm.on('submit', (evt) => {
+                evt.preventDefault();
+                sendFormAjax($MODEL_NAME_CAMEL$EditForm, {
+                    table: $MODEL_NAME_CAMEL$Table,
+                    modal: $MODEL_NAME_CAMEL$EditModal
+                })
+            });
+        });
+    </script>
+@endpush

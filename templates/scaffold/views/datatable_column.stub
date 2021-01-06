@@ -1,1 +1,1 @@
-'$FIELD_NAME$'
+'$FIELD_NAME$' => new Column(['title' => __('$NS_LOCALE_PREFIX$models/$MODEL_NAME_CAMEL$.fields.$FIELD_NAME$'), 'data' => '$FIELD_NAME$'$SEARCHABLE$])

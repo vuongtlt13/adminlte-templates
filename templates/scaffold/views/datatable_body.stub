@@ -1,10 +1,26 @@
-@section('css')
+@push('css')
     @include('layouts.datatables_css')
-@endsection
+@endpush
 
-{!! $dataTable->table(['width' => '100%', 'class' => 'table table-striped table-bordered']) !!}
+<div class="card" style="overflow-y: auto;">
+    <div class="card-body">
+        {!! $dataTable->table(['width' => '100%', 'class' => 'table table-bordered table-hover dataTable', 'id' => '$MODEL_NAME_CAMEL$-datatable']) !!}
+    </div>
+</div>
 
 @push('scripts')
     @include('layouts.datatables_js')
+    @include('$NS_VIEW_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.toolbar_js')
     {!! $dataTable->scripts() !!}
+
+    <script type="text/javascript">
+        var $MODEL_NAME_CAMEL$SelectedRows = [];
+        var $MODEL_NAME_CAMEL$Table = $('#$MODEL_NAME_CAMEL$-datatable').DataTable();
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            initDatatableEvent('#$MODEL_NAME_CAMEL$-datatable', $MODEL_NAME_CAMEL$SelectedRows);
+        });
+    </script>
 @endpush

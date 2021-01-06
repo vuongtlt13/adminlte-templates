@@ -2,23 +2,27 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">$MODEL_NAME_PLURAL_HUMAN$</h1>
-        <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.create') }}">Add New</a>
+        <h1 class="float-left">
+            @lang('$NS_LOCALE_PREFIX$models/$MODEL_NAME_CAMEL$.plural')
+        </h1>
+        <h1 class="float-right">
+            <button type="button" class="btn btn-block btn-primary float-right btnAddNew$MODEL_NAME$"
+                    style="margin-top: -10px;margin-bottom: 5px">@lang('crud.add_new')</button>
         </h1>
     </section>
     <div class="content">
         <div class="clearfix"></div>
-
-        <div class="clearfix"></div>
-        <div class="box box-primary">
-            <div class="box-body">
-                    @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.table')
-            </div>
-        </div>
-        <div class="text-center">
-        $PAGINATE$
-        </div>
+        @include('$NS_VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.table_with_crud_modals')
     </div>
 @endsection
 
+@push('scripts')
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            $('.btnAddNew$MODEL_NAME$').on('click', (evt) => {
+                resetForm($MODEL_NAME_CAMEL$CreateForm);
+                $MODEL_NAME_CAMEL$CreateModal.modal('show');
+            });
+        });
+    </script>
+@endpush

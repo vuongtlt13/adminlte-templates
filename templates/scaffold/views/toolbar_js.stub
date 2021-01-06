@@ -1,0 +1,9 @@
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setTimeout(() => {
+                $("div.$MODEL_NAME_CAMEL$-toolbar").html(`@include('$NS_VIEW_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.toolbar')`);
+            }, 10)
+        });
+    </script>
+@endpush

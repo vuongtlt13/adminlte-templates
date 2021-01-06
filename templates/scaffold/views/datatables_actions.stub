@@ -1,15 +1,15 @@
-{!! Form::open(['route' => ['$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.destroy', $$PRIMARY_KEY_NAME$], 'method' => 'delete']) !!}
 <div class='btn-group'>
-    <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.show', $$PRIMARY_KEY_NAME$) }}" class='btn btn-default btn-xs'>
-        <i class="glyphicon glyphicon-eye-open"></i>
-    </a>
-    <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.edit', $$PRIMARY_KEY_NAME$) }}" class='btn btn-default btn-xs'>
-        <i class="glyphicon glyphicon-edit"></i>
-    </a>
-    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', [
-        'type' => 'submit',
-        'class' => 'btn btn-danger btn-xs',
-        'onclick' => "return confirm('Are you sure?')"
-    ]) !!}
+{{--    <a href="{{ route('$MODEL_NAME_PLURAL_CAMEL$.show', $id) }}" class='btn btn-default btn-xs datatable-action'>--}}
+{{--        <i class="far fa-eye"></i>--}}
+{{--    </a>--}}
+    <button class='btn btn-primary btn-xs datatable-action' onclick="editRecord(this, $MODEL_NAME_CAMEL$EditForm)">
+        <i class="fas fa-edit"></i>
+    </button>
+
+    <button
+        class='btn btn-danger btn-xs datatable-action'
+        onclick="deleteRecord(this, '{{route("$MODEL_NAME_PLURAL_CAMEL$.destroy", "%s")}}', true, )"
+    >
+        <i class="fas fa-trash-alt"></i>
+    </button>
 </div>
-{!! Form::close() !!}
