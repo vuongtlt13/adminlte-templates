@@ -10,7 +10,7 @@
 
 @push('scripts')
     @include('layouts.datatables_js')
-    @include('$NS_VIEW_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.toolbar_js')
+    @include('$NS_VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.toolbar_js')
     {!! $dataTable->scripts() !!}
 
     <script type="text/javascript">
