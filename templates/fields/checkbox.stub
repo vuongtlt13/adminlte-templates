@@ -1,7 +1,7 @@
 <!-- $FIELD_NAME_TITLE$ Field -->
 <div class="form-group col-sm-6">
     <label class="checkbox-inline">
-        {!! Form::hidden('$FIELD_NAME$', 0) !!}
+        {!! Form::hidden('$FIELD_NAME$', 0, ['class' => 'ignore-reset']) !!}
         {!! Form::checkbox('$FIELD_NAME$', '$CHECKBOX_VALUE$', null, ['data-column' => '$FIELD_NAME$']) !!} {{__('$NS_LOCALE_PREFIX$models/$MODEL_NAME_CAMEL$.fields.$FIELD_NAME$')}}
     </label>
 </div>
