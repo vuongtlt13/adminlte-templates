@@ -1,1 +1,11 @@
-'$FIELD_NAME$' => (new Column(['title' => __('$NS_LOCALE_PREFIX$models/$MODEL_NAME_CAMEL$.fields.$FIELD_NAME$'), 'data' => '$FIELD_NAME$'$SEARCHABLE$]))
+'$FIELD_NAME$' => (new Column([
+$TABS$    'title' => __('$NS_LOCALE_PREFIX$models/$MODEL_NAME_CAMEL$.fields.$FIELD_NAME$'),
+$TABS$    'data' => '$FIELD_NAME$',
+$TABS$    'searchable' => $SEARCHABLE$,
+$TABS$    'orderable' => $ORDERABLE$,
+$TABS$    'exportable' => $EXPORTABLE$,
+$TABS$    'printable' => $PRINTABLE$,
+$TABS$    'attributes' => [
+$TABS$        'class' => '$CSS_CLASS$'
+$TABS$    ],
+$LAST_TABS$]))
