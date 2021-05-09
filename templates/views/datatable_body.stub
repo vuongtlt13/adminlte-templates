@@ -15,7 +15,9 @@
 
     <script type="text/javascript">
         var $MODEL_NAME_CAMEL$SelectedRows = [];
-        var $MODEL_NAME_CAMEL$Table = $('#$MODEL_NAME_CAMEL$-datatable').DataTable();
+        setTimeout(() => {
+            window.$MODEL_NAME_CAMEL$Table = window.LaravelDataTables["$MODEL_NAME_CAMEL$-datatable"];
+        }, 10);
     </script>
 
     <script type="text/javascript">

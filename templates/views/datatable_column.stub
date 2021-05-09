@@ -8,4 +8,4 @@ $TABS$    'printable' => $PRINTABLE$,
 $TABS$    'attributes' => [
 $TABS$        'class' => '$CSS_CLASS$'
 $TABS$    ],
-$LAST_TABS$]))
+$TABS$]))
