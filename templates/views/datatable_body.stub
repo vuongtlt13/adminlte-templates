@@ -15,13 +15,12 @@
 
     <script type="text/javascript">
         var $MODEL_NAME_CAMEL$SelectedRows = [];
-        setTimeout(() => {
-            window.$MODEL_NAME_CAMEL$Table = window.LaravelDataTables["$MODEL_NAME_CAMEL$-datatable"];
-        }, 10);
+        var $MODEL_NAME_CAMEL$Table = null;
     </script>
 
     <script type="text/javascript">
         $(document).ready(function() {
+            $MODEL_NAME_CAMEL$Table = window.LaravelDataTables["$MODEL_NAME_CAMEL$-datatable"];
             initDatatableEvent('#$MODEL_NAME_CAMEL$-datatable', $MODEL_NAME_CAMEL$SelectedRows);
         });
     </script>

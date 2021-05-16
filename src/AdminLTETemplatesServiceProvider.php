@@ -23,8 +23,8 @@ class AdminLTETemplatesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('ViewTemplate', function ($app) {
-            return new ViewTemplate();
+        $this->app->singleton('ViewMapping', function ($app) {
+            return new ViewMapping();
         });
     }
 }
