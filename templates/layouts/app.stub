@@ -14,7 +14,9 @@
         }
     </style>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+          crossorigin="anonymous"/>
 
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -42,373 +44,378 @@
     @stack('css')
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
-        <!-- Navbar -->
-        @include('layouts.navbar')
-        <!-- /.navbar -->
+<body class="sidebar-mini sidebar-closed" style="height: auto;">
+<div class="wrapper">
+    <!-- Navbar -->
+    @include('layouts.navbar')
+    <!-- /.navbar -->
 
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="#" class="brand-link">
-                <img src="/vendor/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                     style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
-            </a>
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="#" class="brand-link">
+            <img src="/vendor/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                 style="opacity: .8">
+            <span class="brand-text font-weight-light">AdminLTE 3</span>
+        </a>
 
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="/vendor/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
-                    </div>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="/vendor/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
-
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        @include('layouts.menu')
-                    </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
+                <div class="info">
+                    <a href="#" class="d-block">Alexander Pierce</a>
+                </div>
             </div>
-            <!-- /.sidebar -->
-        </aside>
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            @yield('content')
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    @include('layouts.menu')
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
         </div>
-        <!-- /.content-wrapper -->
-    </div>
+        <!-- /.sidebar -->
+    </aside>
 
-    <!-- jQuery -->
-    <script src="/vendor/plugins/jquery/jquery.min.js"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="/vendor/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            @yield('content-header')
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main Content -->
+        <section class="content">
+            @yield('content')
+        </section>
+    </div>
+    <!-- /.content-wrapper -->
+</div>
+
+<!-- jQuery -->
+<script src="/vendor/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="/vendor/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="/vendor/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="/vendor/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="/vendor/plugins/sparklines/sparkline.js"></script>
+<!-- Sweet Alert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- JQVMap -->
+<script src="/vendor/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="/vendor/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="/vendor/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="/vendor/plugins/moment/moment.min.js"></script>
+<script src="/vendor/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="/vendor/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="/vendor/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="/vendor/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- Select2 -->
+<script src="/vendor/plugins/select2/js/select2.full.min.js"></script>
+
+<!-- Font Awesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+        integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ=="
+        crossorigin="anonymous"></script>
+
+<!-- AdminLTE App -->
+<script src="/vendor/dist/js/adminlte.js"></script>
+
+<!-- Common -->
+<script type="text/javascript">
+    const defaultConfirmOptions = {
+        mainText: "@lang("crud.are_you_sure")",
+        detailText: "@lang("crud.confirm_delete_text")",
+        cancel: "@lang("crud.cancel")",
+        agree: "@lang("crud.agree")",
+        icon: "warning",
+    }
+</script>
+<script type="text/javascript">
+    const BAD_PAYLOAD = 422;
+
+    String.prototype.format = function () {
+        let i = 0, args = arguments;
+        return this.replace(/%s/g, function () {
+            return typeof args[i] != 'undefined' ? args[i++] : '';
+        });
+    };
+
+    const parseNumber = (data, c = 2, d = ".", t = ",") => {
+        return parseInt(String(data).split(t).join(''));
+    };
+
+    const formatNumber = (data, c = 2, d = ".", t = ",") => {
+        return (data).toFixed(c).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
+    };
+
+    const showNotificationFromResponse = (resp, time = 5000, successTitle = 'Thành công!', errorTitle = 'Thất bại!') => {
+        if (resp.success) toastr.success(resp.message, successTitle, {timeOut: time})
+        else toastr.error(resp.message, errorTitle, {timeOut: time});
+    };
+
+    const showNotificationFromError = (error, time = 5000, errorTitle = 'Có lỗi xảy ra!') => {
+        let errorMessage = "";
+        switch (error.status) {
+            case BAD_PAYLOAD:
+                errorMessage = error.message;
+                errorTitle = 'Dữ liệu nhập vào không hợp lệ!';
+                break;
+            default:
+                let responseJson = error.responseJSON;
+                errorMessage = (responseJson && responseJson.message) ? responseJson.message : error.responseText;
+        }
+        toastr.error(errorMessage, errorTitle, {timeOut: time});
+    };
+
+    const defaultOnBeforeSend = () => {
+    };
+
+    const defaultOnCompleted = () => {
+    };
+
+    const defaultOnSuccess = (resp, table = null, modal = null) => {
+        showNotificationFromResponse(resp);
+        if (table) table.ajax.reload();
+        if (modal) modal.modal('hide');
+    };
+
+    const defaultOnError = (error) => {
+        showNotificationFromError(error);
+    };
+
+    const defaultAjaxOptions = {
+        type: 'get',
+        onBeforeSend: defaultOnBeforeSend,
+        onSuccess: defaultOnSuccess,
+        onError: defaultOnError,
+        onCompleted: defaultOnCompleted,
+        table: null,
+        data: {},
+        modal: null,
+    };
+
+    const mergeAjaxOptions = (options, defaultAjaxOptions) => {
+        return {
+            ...defaultAjaxOptions,
+            ...options
+        }
+    };
+
+    const sendAjax = (url, data, type = 'get', options = null) => {
+        const ajaxOptions = {
+            ...defaultAjaxOptions,
+        }
+        if (options === null) options = ajaxOptions;
+        else options = mergeAjaxOptions(options, ajaxOptions)
+        $.ajax({
+            url: url,
+            type: type,
+            data: data,
+            beforeSend: options.onBeforeSend,
+            success: function (resp) {
+                options.onSuccess(resp, options.table, options.modal);
+            },
+            error: options.onError,
+            complete: options.onCompleted
+        });
+    };
+
+    const sendFormAjax = (jQueryForm, options = null) => {
+        const ajaxOptions = {
+            ...defaultAjaxOptions,
+            url: jQueryForm.attr('action'),
+            type: jQueryForm.attr('method'),
+        }
+        if (options === null) options = ajaxOptions;
+        else options = mergeAjaxOptions(options, ajaxOptions)
+        jQueryForm.ajaxSubmit({
+            url: options.url,
+            type: options.type,
+            dataType: 'json',
+            beforeSubmit: function (arr, $form, options) {
+                let name;
+                for (name in options.data) {
+                    arr.push({"name": name, 'value': options[name]});
+                }
+            },
+            beforeSend: options.onBeforeSend,
+            data: options.data,
+            success: function (resp) {
+                options.onSuccess(resp, options.table, options.modal);
+            },
+            error: options.onError,
+            complete: options.onCompleted
+        });
+    };
+
+    const resetForm = (form) => {
+        form.find('input').each(function (index, ele) {
+            let jqueryObj = $(ele);
+            let value = jqueryObj.data('defaultValue') !== null ? jqueryObj.data('defaultValue') : null;
+
+            if ((!jqueryObj.hasClass('ignore-reset')) && (!jqueryObj.hasClass('no-reset')) && (jqueryObj.attr('type') !== 'checkbox')) jqueryObj.val(value);
+        });
+
+        form.find('select').each(function (index, ele) {
+            let jqueryObj = $(ele);
+            let value = jqueryObj.data('defaultValue') !== null ? jqueryObj.data('defaultValue') : null;
+            if ((!jqueryObj.hasClass('ignore-reset')) && (!jqueryObj.hasClass('no-reset'))) {
+                jqueryObj.val(value);
+                if (jqueryObj.hasClass('select2')) jqueryObj.trigger('change');
             }
         });
-        $.widget.bridge('uibutton', $.ui.button)
-    </script>
-    <!-- Bootstrap 4 -->
-    <script src="/vendor/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- ChartJS -->
-    <script src="/vendor/plugins/chart.js/Chart.min.js"></script>
-    <!-- Sparkline -->
-    <script src="/vendor/plugins/sparklines/sparkline.js"></script>
-    <!-- Sweet Alert -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!-- JQVMap -->
-    <script src="/vendor/plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="/vendor/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="/vendor/plugins/jquery-knob/jquery.knob.min.js"></script>
-    <!-- daterangepicker -->
-    <script src="/vendor/plugins/moment/moment.min.js"></script>
-    <script src="/vendor/plugins/daterangepicker/daterangepicker.js"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="/vendor/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-    <!-- Summernote -->
-    <script src="/vendor/plugins/summernote/summernote-bs4.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="/vendor/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- Select2 -->
-    <script src="/vendor/plugins/select2/js/select2.full.min.js"></script>
+    };
 
-    <!-- Font Awesome -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous"></script>
+    const getValueByAttr = (data, attrs) => {
+        let res = null;
+        attrs.map((attr) => {
+            if (res === null) res = data[attr];
+            else {
+                if (res !== undefined) res = res[attr];
+            }
+        });
+        return res;
+    };
 
-    <!-- AdminLTE App -->
-    <script src="/vendor/dist/js/adminlte.js"></script>
+    const fillData = (form, data, htmlType, handler) => {
+        form.find(htmlType).each(function (index, ele) {
+            let jqueryObj = $(ele);
+            if (jqueryObj[0].hasAttribute('data-column')) {
+                let dataField = jqueryObj.attr('data-column');
+                let attrs = dataField.split(".");
+                let value = getValueByAttr(data, attrs);
+                handler(jqueryObj, value);
+            }
+        });
+    };
 
-    <!-- Common -->
-    <script type="text/javascript">
-        const defaultConfirmOptions = {
-            mainText: "@lang("crud.are_you_sure")",
-            detailText: "@lang("crud.confirm_delete_text")",
-            cancel: "@lang("crud.cancel")",
-            agree: "@lang("crud.agree")",
-            icon: "warning",
+    const fillTextAreaFunc = (jqueryObj, value) => {
+        if (jqueryObj.attr('data-role') === 'tagsinput') {
+            jqueryObj.tagsinput('removeAll');
+            jqueryObj.tagsinput('add', value);
+        } else jqueryObj.val(value);
+    };
+
+    const fillInputFunc = (jqueryObj, value) => {
+        if (jqueryObj.attr('data-role') === 'tagsinput') {
+            jqueryObj.tagsinput('removeAll');
+            jqueryObj.tagsinput('add', value);
+        } else if (jqueryObj.attr('type') === 'checkbox') jqueryObj.prop('checked', value == 1);
+        else jqueryObj.val(value);
+    };
+
+    const fillSelectFunc = (jqueryObj, value) => {
+        jqueryObj.val(value);
+        if (jqueryObj.hasClass('select2'))
+            jqueryObj.trigger('change');
+    };
+
+    const fillEditForm = (data, form, key = "id") => {
+        let templateAction = form.data('templateAction');
+        form.attr('action', templateAction.format(data[key]));
+
+        fillData(form, data, 'textarea', fillTextAreaFunc);
+        fillData(form, data, 'input', fillInputFunc);
+        fillData(form, data, 'select', fillSelectFunc);
+    };
+
+    const editRecord = (ele, editForm, key = "id") => {
+        let table = $(ele).closest('table').DataTable();
+        let row = $(ele).closest('tr');
+        let data = table.row(row).data();
+        fillEditForm(data, editForm, key);
+        editForm.closest('div.modal').modal('show');
+    };
+
+    const confirmBox = async (options = {}) => {
+        let finalOptions = {
+            ...defaultConfirmOptions,
+            ...options,
         }
-    </script>
-    <script type="text/javascript">
-        const BAD_PAYLOAD = 422;
+        return await swal({
+            title: finalOptions.mainText,
+            text: finalOptions.detailText,
+            icon: finalOptions.icon,
+            buttons: [finalOptions.cancel, finalOptions.agree],
+            dangerMode: true,
+        });
+    };
 
-        String.prototype.format = function () {
-            let i = 0, args = arguments;
-            return this.replace(/%s/g, function () {
-                return typeof args[i] != 'undefined' ? args[i++] : '';
-            });
-        };
-
-        const parseNumber = (data, c=2, d=".", t=",") => {
-            return parseInt(String(data).split(t).join(''));
-        };
-
-        const formatNumber = (data, c=2, d=".", t=",") => {
-            return (data).toFixed(c).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
-        };
-
-        const showNotificationFromResponse = (resp, time=5000, successTitle = 'Thành công!', errorTitle = 'Thất bại!') => {
-            if (resp.success) toastr.success(resp.message, successTitle, {timeOut: time})
-            else toastr.error(resp.message, errorTitle, {timeOut: time});
-        };
-
-        const showNotificationFromError = (error, time=5000, errorTitle = 'Có lỗi xảy ra!') => {
-            let errorMessage = "";
-            switch (error.status) {
-                case BAD_PAYLOAD:
-                    errorMessage = error.message;
-                    errorTitle = 'Dữ liệu nhập vào không hợp lệ!';
-                    break;
-                default:
-                    let responseJson = error.responseJSON;
-                    errorMessage = (responseJson && responseJson.message) ? responseJson.message : error.responseText;
-            }
-            toastr.error(errorMessage, errorTitle, {timeOut: time});
-        };
-
-        const defaultOnBeforeSend = () => {};
-
-        const defaultOnCompleted = () => {};
-
-        const defaultOnSuccess = (resp, table = null, modal = null) => {
-            showNotificationFromResponse(resp);
-            if (table) table.ajax.reload();
-            if (modal) modal.modal('hide');
-        };
-
-        const defaultOnError = (error) => {
-            showNotificationFromError(error);
-        };
-
-        const defaultAjaxOptions = {
-            type: 'get',
-            onBeforeSend: defaultOnBeforeSend,
-            onSuccess: defaultOnSuccess,
-            onError: defaultOnError,
-            onCompleted: defaultOnCompleted,
-            table: null,
-            data: {},
-            modal: null,
-        };
-
-        const mergeAjaxOptions = (options, defaultAjaxOptions) => {
-            return {
-                ...defaultAjaxOptions,
-                ...options
-            }
-        };
-
-        const sendAjax = (url, data, type = 'get', options = null) => {
-            const ajaxOptions = {
-                ...defaultAjaxOptions,
-            }
-            if (options === null) options = ajaxOptions;
-            else options = mergeAjaxOptions(options, ajaxOptions)
-            $.ajax({
-                url: url,
-                type: type,
-                data: data,
-                beforeSend: options.onBeforeSend,
-                success: function (resp) {
-                    options.onSuccess(resp, options.table, options.modal);
-                },
-                error: options.onError,
-                complete: options.onCompleted
-            });
-        };
-
-        const sendFormAjax = (jQueryForm, options = null) => {
-            const ajaxOptions = {
-                ...defaultAjaxOptions,
-                url: jQueryForm.attr('action'),
-                type: jQueryForm.attr('method'),
-            }
-            if (options === null) options = ajaxOptions;
-            else options = mergeAjaxOptions(options, ajaxOptions)
-            jQueryForm.ajaxSubmit({
-                url: options.url,
-                type: options.type,
-                dataType: 'json',
-                beforeSubmit: function(arr, $form, options) {
-                    let name;
-                    for (name in options.data) {
-                        arr.push({"name": name, 'value': options[name]});
-                    }
-                },
-                beforeSend: options.onBeforeSend,
-                data: options.data,
-                success: function (resp) {
-                    options.onSuccess(resp, options.table, options.modal);
-                },
-                error: options.onError,
-                complete: options.onCompleted
-            });
-        };
-
-        const resetForm = (form) => {
-            form.find('input').each(function (index, ele) {
-                let jqueryObj = $(ele);
-                let value = jqueryObj.data('defaultValue') !== null ? jqueryObj.data('defaultValue') : null;
-
-                if ((!jqueryObj.hasClass('ignore-reset')) && (!jqueryObj.hasClass('no-reset')) &&  (jqueryObj.attr('type') !== 'checkbox')) jqueryObj.val(value);
-            });
-
-            form.find('select').each(function (index, ele) {
-                let jqueryObj = $(ele);
-                let value = jqueryObj.data('defaultValue') !== null ? jqueryObj.data('defaultValue') : null;
-                if ((!jqueryObj.hasClass('ignore-reset')) && (!jqueryObj.hasClass('no-reset'))) {
-                    jqueryObj.val(value);
-                    if (jqueryObj.hasClass('select2')) jqueryObj.trigger('change');
-                }
-            });
-        };
-
-        const getValueByAttr = (data, attrs) => {
-            let res = null;
-            attrs.map((attr) => {
-                if (res === null) res = data[attr];
-                else {
-                    if (res !== undefined) res = res[attr];
-                }
-            });
-            return res;
-        };
-
-        const fillData = (form, data, htmlType, handler) => {
-            form.find(htmlType).each(function (index, ele) {
-                let jqueryObj = $(ele);
-                if (jqueryObj[0].hasAttribute('data-column')) {
-                    let dataField =  jqueryObj.attr('data-column');
-                    let attrs = dataField.split(".");
-                    let value = getValueByAttr(data, attrs);
-                    handler(jqueryObj, value);
-                }
-            });
-        };
-
-        const fillTextAreaFunc = (jqueryObj, value) => {
-            if (jqueryObj.attr('data-role') === 'tagsinput') {
-                jqueryObj.tagsinput('removeAll');
-                jqueryObj.tagsinput('add', value);
-            }
-            else jqueryObj.val(value);
-        };
-
-        const fillInputFunc = (jqueryObj, value) => {
-            if (jqueryObj.attr('data-role') === 'tagsinput') {
-                jqueryObj.tagsinput('removeAll');
-                jqueryObj.tagsinput('add', value);
-            }
-            else if (jqueryObj.attr('type') === 'checkbox') jqueryObj.prop('checked', value == 1);
-            else jqueryObj.val(value);
-        };
-
-        const fillSelectFunc = (jqueryObj, value) => {
-            jqueryObj.val(value);
-            if (jqueryObj.hasClass('select2'))
-                jqueryObj.trigger('change');
-        };
-
-        const fillEditForm = (data, form, key = "id") => {
-            let templateAction = form.data('templateAction');
-            form.attr('action', templateAction.format(data[key]));
-
-            fillData(form, data, 'textarea', fillTextAreaFunc);
-            fillData(form, data, 'input', fillInputFunc);
-            fillData(form, data, 'select', fillSelectFunc);
-        };
-
-        const editRecord = (ele, editForm, key="id") => {
+    const deleteRecord = async (ele, uri, isConfirm = true, options = {}) => {
+        let isConfirmed = true;
+        if (isConfirm) isConfirmed = await confirmBox(options);
+        if (isConfirmed) {
             let table = $(ele).closest('table').DataTable();
             let row = $(ele).closest('tr');
-            let data = table.row(row).data();
-            fillEditForm(data, editForm, key);
-            editForm.closest('div.modal').modal('show');
-        };
+            let id = table.row(row).data().id;
 
-        const confirmBox = async (options = {}) => {
-            let finalOptions = {
-                ...defaultConfirmOptions,
-                ...options,
-            }
-            return await swal({
-                title: finalOptions.mainText,
-                text: finalOptions.detailText,
-                icon: finalOptions.icon,
-                buttons: [finalOptions.cancel, finalOptions.agree],
-                dangerMode: true,
-            });
-        };
+            sendAjax(uri.format(id), {
+                '_method': 'DELETE',
+            }, 'post', {
+                table: table
+            })
+        }
+    };
 
-        const deleteRecord = async (ele, uri, isConfirm=true, options = {}) => {
-            let isConfirmed = true;
-            if (isConfirm) isConfirmed = await confirmBox(options);
-            if (isConfirmed) {
-                let table = $(ele).closest('table').DataTable();
-                let row = $(ele).closest('tr');
-                let id = table.row(row).data().id;
+    const fnRowCallBack = (ele, data, rowIndex, selectedRows) => {
+        let row = $(ele);
+        if ($.inArray(data.id, selectedRows) !== -1) {
+            if (!row.hasClass('selected_row')) row.addClass('selected_row');
+        } else {
+            if (row.hasClass('selected_row')) row.removeClass('selected_row');
+        }
+    };
 
-                sendAjax(uri.format(id), {
-                    '_method': 'DELETE',
-                }, 'post', {
-                    table: table
-                })
-            }
-        };
+    const initDatatableEvent = (tableSelector, selectedRows) => {
+        let table = $(tableSelector).DataTable();
+        $(table.table().container()).removeClass('form-inline');
 
-        const fnRowCallBack = ( ele, data, rowIndex, selectedRows) => {
-            let row = $(ele);
-            if ( $.inArray(data.id, selectedRows) !== -1 ) {
-                if (!row.hasClass('selected_row')) row.addClass('selected_row');
+        $(tableSelector).on('click', 'tbody tr', function (evt) {
+            if ($(evt.target).closest('button').hasClass('datatable-action')) return;
+
+            let id = table.row(this).data().id;
+            let index = $.inArray(id, selectedRows);
+            $(this).toggleClass('selected_row');
+            if ($(this).hasClass('selected_row')) {
+                if (index === -1) selectedRows.push(id);
             } else {
-                if (row.hasClass('selected_row')) row.removeClass('selected_row');
+                if (index !== -1) selectedRows.splice(index, 1);
             }
-        };
+        });
+    };
+</script>
 
-        const initDatatableEvent = (tableSelector, selectedRows) => {
-            let table = $(tableSelector).DataTable();
-
-            $(tableSelector).on( 'click', 'tbody tr', function (evt) {
-                if ($(evt.target).closest('button').hasClass('datatable-action')) return;
-
-                let id = table.row(this).data().id;
-                let index = $.inArray(id, selectedRows);
-                $(this).toggleClass('selected_row');
-                if ($(this).hasClass('selected_row')) {
-                    if ( index === -1 ) selectedRows.push( id );
-                } else {
-                    if ( index !== -1 ) selectedRows.splice(index, 1);
-                }
-            } );
-        };
-    </script>
-
-    <!-- Ajax Form -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
-    <!-- Toastr -->
-    <script src="/vendor/plugins/toastr/toastr.min.js"></script>
-    @stack('scripts')
+<!-- Ajax Form -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"
+        integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn"
+        crossorigin="anonymous"></script>
+<!-- Toastr -->
+<script src="/vendor/plugins/toastr/toastr.min.js"></script>
+@stack('scripts')
 </body>
 </html>
