@@ -274,11 +274,24 @@
     };
 
     const resetForm = (form) => {
-        form.find('input').each(function (index, ele) {
+        form.find('textarea').each(function (index, ele) {
             let jqueryObj = $(ele);
             let value = jqueryObj.data('defaultValue') !== null ? jqueryObj.data('defaultValue') : null;
 
             if ((!jqueryObj.hasClass('ignore-reset')) && (!jqueryObj.hasClass('no-reset')) && (jqueryObj.attr('type') !== 'checkbox')) jqueryObj.val(value);
+        });
+
+        form.find('input').each(function (index, ele) {
+            let jqueryObj = $(ele);
+            let value = jqueryObj.data('defaultValue') !== null ? jqueryObj.data('defaultValue') : null;
+
+            if ((!jqueryObj.hasClass('ignore-reset')) && (!jqueryObj.hasClass('no-reset'))) {
+                if (jqueryObj.attr('type') !== 'checkbox') jqueryObj.val(value);
+                else {
+                    value = (value !== null && value !== undefined && value !== 0 && value !== false);
+                    jqueryObj.prop('checked', value);
+                }
+            }
         });
 
         form.find('select').each(function (index, ele) {

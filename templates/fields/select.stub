@@ -1,5 +1,5 @@
 <!-- $FIELD_NAME_TITLE$ Field -->
 <div class="form-group col-sm-6">
     {!! Form::label(null, __('$NS_LOCALE_PREFIX$models/$MODEL_NAME_CAMEL$.fields.$FIELD_NAME$').':') !!}
-    {!! Form::select('$FIELD_NAME$', $FIELD_NAME$Options, null, ['class' => 'form-control', 'data-column' => '$FIELD_NAME$']) !!}
+    {!! Form::select('$FIELD_NAME$', $$FIELD_NAME_CAMEL$Options, null, ['class' => 'form-control select2', 'data-column' => '$FIELD_NAME$']) !!}
 </div>
