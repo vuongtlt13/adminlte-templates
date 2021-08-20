@@ -1,7 +1,18 @@
 <!-- $FIELD_NAME_TITLE$ Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('$FIELD_NAME$', __('$NS_LOCALE_PREFIX$models/$MODEL_NAME_CAMEL$.fields.$FIELD_NAME$').':') !!}
-    {!! Form::date('$FIELD_NAME$', null, ['class' => 'form-control','id'=>'$FIELD_NAME$', 'data-column' => '$FIELD_NAME$']) !!}
+    {!!
+        Form::date(
+            '$FIELD_NAME$',
+            null,
+            [
+                'class' => 'form-control',
+                'id'=>'$FIELD_NAME$',
+                'data-column' => '$FIELD_NAME$',
+                'data-default-value' => $FIELD_DEFAULT_VALUE$
+            ]
+        )
+    !!}
 </div>
 
 @push('scripts')

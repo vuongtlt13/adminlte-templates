@@ -3,6 +3,6 @@
     {!! Form::label('$FIELD_NAME$', __('$NS_LOCALE_PREFIX$models/$MODEL_NAME_CAMEL$.fields.$FIELD_NAME$').':') !!}
     <label class="checkbox-inline">
         {!! Form::hidden('$FIELD_NAME$', 0) !!}
-        {!! Form::checkbox('$FIELD_NAME$', 1, null,  ['data-toggle' => 'toggle']) !!}
+        {!! Form::checkbox('$FIELD_NAME$', 1, null,  ['data-toggle' => 'toggle', 'data-default-value' => $FIELD_DEFAULT_VALUE$]) !!}
     </label>
 </div>
