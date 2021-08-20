@@ -47,8 +47,8 @@
 <body class="sidebar-mini sidebar-closed" style="height: auto;">
 <div class="wrapper">
     <!-- Navbar -->
-    @include('layouts.navbar')
-    <!-- /.navbar -->
+@include('layouts.navbar')
+<!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -152,6 +152,8 @@
 </script>
 <script type="text/javascript">
     const BAD_PAYLOAD = 422;
+    const UNAUTHENTICATED = 401;
+    const FORBIDDEN = 403;
 
     String.prototype.format = function () {
         let i = 0, args = arguments;
@@ -180,11 +182,20 @@
                 errorMessage = error.message;
                 errorTitle = 'Dữ liệu nhập vào không hợp lệ!';
                 break;
+            case FORBIDDEN:
+                errorMessage = error.message;
+                errorTitle = 'Không có quyền thực hiện!';
+                break;
             default:
                 let responseJson = error.responseJSON;
                 errorMessage = (responseJson && responseJson.message) ? responseJson.message : error.responseText;
         }
         toastr.error(errorMessage, errorTitle, {timeOut: time});
+        if (error.status === UNAUTHENTICATED) {
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        }
     };
 
     const defaultOnBeforeSend = () => {
@@ -269,24 +280,11 @@
     };
 
     const resetForm = (form) => {
-        form.find('textarea').each(function (index, ele) {
-            let jqueryObj = $(ele);
-            let value = jqueryObj.data('defaultValue') !== null ? jqueryObj.data('defaultValue') : null;
-
-            if ((!jqueryObj.hasClass('ignore-reset')) && (!jqueryObj.hasClass('no-reset')) && (jqueryObj.attr('type') !== 'checkbox')) jqueryObj.val(value);
-        });
-
         form.find('input').each(function (index, ele) {
             let jqueryObj = $(ele);
             let value = jqueryObj.data('defaultValue') !== null ? jqueryObj.data('defaultValue') : null;
 
-            if ((!jqueryObj.hasClass('ignore-reset')) && (!jqueryObj.hasClass('no-reset'))) {
-                if (jqueryObj.attr('type') !== 'checkbox') jqueryObj.val(value);
-                else {
-                    value = (value !== null && value !== undefined && value !== 0 && value !== false);
-                    jqueryObj.prop('checked', value);
-                }
-            }
+            if ((!jqueryObj.hasClass('ignore-reset')) && (!jqueryObj.hasClass('no-reset')) && (jqueryObj.attr('type') !== 'checkbox')) jqueryObj.val(value);
         });
 
         form.find('select').each(function (index, ele) {
@@ -424,13 +422,15 @@
         crossorigin="anonymous"></script>
 <!-- Toastr -->
 <script src="/vendor/plugins/toastr/toastr.min.js"></script>
+
 <script type="text/javascript">
-    $(document).ready( function (evt) {
+    $(document).ready(function (evt) {
         $('.select2').select2({
             theme: 'bootstrap4'
         });
     });
 </script>
+
 @stack('scripts')
 </body>
 </html>
