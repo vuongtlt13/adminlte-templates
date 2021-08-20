@@ -137,11 +137,6 @@
 <!-- Select2 -->
 <script src="/vendor/plugins/select2/js/select2.full.min.js"></script>
 
-<!-- Font Awesome -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-        integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ=="
-        crossorigin="anonymous"></script>
-
 <!-- AdminLTE App -->
 <script src="/vendor/dist/js/adminlte.js"></script>
 
@@ -429,6 +424,13 @@
         crossorigin="anonymous"></script>
 <!-- Toastr -->
 <script src="/vendor/plugins/toastr/toastr.min.js"></script>
+<script type="text/javascript">
+    $(document).ready( function (evt) {
+        $('.select2').select2({
+            theme: 'bootstrap4'
+        });
+    });
+</script>
 @stack('scripts')
 </body>
 </html>
