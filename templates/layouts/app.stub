@@ -45,10 +45,18 @@
 </head>
 
 <body class="sidebar-mini sidebar-closed" style="height: auto;">
+
+<div class="modal-backdrop modal-dialog-centered" id="loading-modal" style="z-index: 9999; opacity: .5;justify-content: center;display: none">
+    <div id="loader" style="text-align: center;" >
+        <div class="spinner-border change-color" style="width: 8rem;height: 8rem;font-size: 2rem;"></div>
+    </div>
+</div>
+<!-- /.modal -->
+
 <div class="wrapper">
     <!-- Navbar -->
-@include('layouts.navbar')
-<!-- /.navbar -->
+    @include('layouts.navbar')
+    <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -199,9 +207,11 @@
     };
 
     const defaultOnBeforeSend = () => {
+        $('#loading-modal').show();
     };
 
     const defaultOnCompleted = () => {
+        $('#loading-modal').hide();
     };
 
     const defaultOnSuccess = (resp, table = null, modal = null) => {
@@ -223,6 +233,7 @@
         table: null,
         data: {},
         modal: null,
+        defaultValues: {}
     };
 
     const mergeAjaxOptions = (options, defaultAjaxOptions) => {
@@ -237,7 +248,8 @@
             ...defaultAjaxOptions,
         }
         if (options === null) options = ajaxOptions;
-        else options = mergeAjaxOptions(options, ajaxOptions)
+        else options = mergeAjaxOptions(options, ajaxOptions);
+
         $.ajax({
             url: url,
             type: type,
@@ -258,15 +270,28 @@
             type: jQueryForm.attr('method'),
         }
         if (options === null) options = ajaxOptions;
-        else options = mergeAjaxOptions(options, ajaxOptions)
+        else options = mergeAjaxOptions(options, ajaxOptions);
+
         jQueryForm.ajaxSubmit({
             url: options.url,
             type: options.type,
             dataType: 'json',
-            beforeSubmit: function (arr, $form, options) {
-                let name;
-                for (name in options.data) {
-                    arr.push({"name": name, 'value': options[name]});
+            beforeSubmit: function (arr, $form, opts) {
+                _defaults = {...options.defaultValues};
+                for (let value in arr) {
+                    let key = arr[0].name;
+                    delete _defaults[key];
+                }
+
+                for (let key in _defaults) {
+                    let value = _defaults[key];
+                    if (Array.isArray(value)) {
+                        for (let i in value) {
+                            arr.push({'name': key + "[]", 'value': value[i]})
+                        }
+                    } else {
+                        arr.push({'name': key, 'value': value})
+                    }
                 }
             },
             beforeSend: options.onBeforeSend,
@@ -373,18 +398,45 @@
     };
 
     const deleteRecord = async (ele, uri, isConfirm = true, options = {}) => {
+        let defaultOptions = {
+            key: 'id',
+            additionalAttrs: {}
+        }
+
+        options = {
+            ...defaultOptions,
+            ...options
+        }
         let isConfirmed = true;
         if (isConfirm) isConfirmed = await confirmBox(options);
         if (isConfirmed) {
             let table = $(ele).closest('table').DataTable();
             let row = $(ele).closest('tr');
-            let id = table.row(row).data().id;
+            let dataRow = table.row(row).data();
 
-            sendAjax(uri.format(id), {
-                '_method': 'DELETE',
-            }, 'post', {
-                table: table
-            })
+            let key = options.key;
+            delete options.key;
+            let additionalAttrs = options.additionalAttrs;
+            delete options.additionalAttrs;
+
+            let data = {};
+            for (let k in additionalAttrs) {
+                data[k] = dataRow[additionalAttrs[k]];
+            }
+            let id = dataRow[key];
+
+            sendAjax(
+                uri.format(id),
+                {
+                    '_method': 'DELETE',
+                    ...data
+                },
+                'post',
+                {
+                    ...options,
+                    table: table,
+                }
+            )
         }
     };
 
@@ -428,6 +480,16 @@
         $('.select2').select2({
             theme: 'bootstrap4'
         });
+
+        setInterval(function() {
+            $('.change-color')
+                .animate( { color: 'red' }, 200)
+                .animate( { color: 'pink' }, 200)
+                .animate( { color: 'blue' }, 200)
+                .animate( { color: 'cyan' }, 200)
+                .animate( { color: 'green' }, 200)
+                .animate( { color: 'orange' }, 200);
+        }, 1100);
     });
 </script>
 
