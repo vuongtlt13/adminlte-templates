@@ -1,5 +1,5 @@
 <div class="modal fade" id="$MODEL_NAME_CAMEL$-edit-modal">
-    <form id="$MODEL_NAME_CAMEL$-edit-form" method="POST" data-template-action="{{route('$MODEL_NAME_PLURAL_CAMEL$.update', '%s')}}">
+    <form id="$MODEL_NAME_CAMEL$-edit-form" method="POST" data-template-action="{{route('$MODEL_NAME_PLURAL_DASHED$.update', '%s')}}">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">

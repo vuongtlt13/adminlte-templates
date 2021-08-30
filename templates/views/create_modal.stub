@@ -1,5 +1,5 @@
 <div class="modal fade" id="$MODEL_NAME_CAMEL$-create-modal">
-    <form id="$MODEL_NAME_CAMEL$-create-form" method="POST" action="{{route('$MODEL_NAME_PLURAL_CAMEL$.store')}}">
+    <form id="$MODEL_NAME_CAMEL$-create-form" method="POST" action="{{route('$MODEL_NAME_PLURAL_DASHED$.store')}}">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
