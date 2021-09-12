@@ -1,3 +1,5 @@
-<li class="{{ Request::is('$MODEL_NAME_PLURAL_DASHED$*') ? 'active' : '' }}">
+@if(\App\Http\Middleware\CheckPermission::hasPermission(\Illuminate\Support\Facades\Auth::user(), '$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_DASHED$.index'))
+<li class="{{ Request::is('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_DASHED$*') ? 'active' : '' }}">
     <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_DASHED$.index') }}"><i class="fa fa-edit"></i><span>@lang('models/$MODEL_NAME_PLURAL_CAMEL$.plural')</span></a>
 </li>
+@endif
