@@ -10,7 +10,7 @@
             <div class="card-body login-card-body {{$errors}}">
                 <p class="login-box-msg">@lang('auth.login.title')</p>
 
-                <form action="{{ url('/login') }}" method="post">
+                <form action="{{ url('/login') }}" method="post" id="login-form">
                     @csrf
                     <div class="input-group mb-3">
                         <input name="email" type="email" class="form-control" placeholder="@lang('auth.email')">
@@ -38,6 +38,8 @@
                             </div>
                         @endif
                     </div>
+                    <div class="g-recaptcha" data-sitekey="{{config('captcha.site_key')}}"></div>
+                    <br/>
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
@@ -49,7 +51,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">@lang('auth.sign_in')</button>
+                            <button type="submit" class="btn btn-primary btn-block g-recaptcha">@lang('auth.sign_in')</button>
                         </div>
                         <!-- /.col -->
                     </div>
