@@ -10,7 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        @include('$NS_VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.fields')
+                        @include('$NS_VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.fields', ['action_type' => "create"])
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -18,9 +18,9 @@
 @push('scripts')
     <script type="text/javascript">
         $(function () {
-            $('{{$action_type}}_#$FIELD_NAME$_div').datetimepicker({
+            $('#{{$action_type}}_$FIELD_NAME$_div').datetimepicker({
                 icons: { time: 'far fa-clock' },
-                format: 'YYYY-MM-DD',
+                format: 'YYYY-MM-DD HH:mm:ss',
                 useCurrent: false
             })
         });

@@ -33,6 +33,12 @@ class ViewMapping
             case "smallInteger":
                 return "number";
                 break;
+            case "timestamp":
+                return "datetime";
+                break;
+            case "date":
+                return "date";
+                break;
             default:
                 return "text";
                 break;
