@@ -1,5 +1,5 @@
 '$FIELD_NAME$' => (new Column([
-$TABS$    'title' => __('$NS_LOCALE_PREFIX$models/$MODEL_NAME_CAMEL$.fields.$LANG_FIELD_NAME$'),
+$TABS$    'title' => $FK_PARENT_LANG$__('$NS_LOCALE_PREFIX$models/$MODEL_NAME_CAMEL$.fields.$LANG_FIELD_NAME$'),
 $TABS$    'data' => '$FIELD_NAME$',
 $TABS$    'searchable' => $SEARCHABLE$,
 $TABS$    'orderable' => $ORDERABLE$,
