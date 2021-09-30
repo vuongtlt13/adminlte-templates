@@ -21,7 +21,7 @@
             $('#{{$action_type}}_$FIELD_NAME$_div').datetimepicker({
                 icons: { time: 'far fa-clock' },
                 format: 'YYYY-MM-DD HH:mm:ss',
-                useCurrent: false
+                useCurrent: true
             })
         });
     </script>
