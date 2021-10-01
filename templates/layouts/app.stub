@@ -472,6 +472,32 @@
                 if (index !== -1) selectedRows.splice(index, 1);
             }
         });
+
+        let wrapper = $(tableSelector).closest('div.dataTables_wrapper');
+        let buttonColvis = wrapper.find('button.buttons-colvis');
+        buttonColvis.on('click', function () {
+            $('.dt-button-collection .buttons-columnVisibility').each(function(index, ele){
+                let $a = $(ele), $cb = $a.find('input:checkbox');
+                if ($cb.length === 0) {
+                    $cb = $('<input>', {
+                        type:'checkbox',
+                        style:'margin:0 .25em 0 0; vertical-align:middle'
+                    }).prop('checked', $(ele).hasClass('active') );
+                    $a.prepend( $cb );
+                }
+            })
+
+            $('.dt-button-collection a').on('click', function(evt){
+                let $a = $(this), $cb = $a.find('input:checkbox');
+                $cb.prop('checked', $a.hasClass('active'));
+            });
+
+            $('.dt-button-collection a input:checkbox').on('click', function(evt){
+                evt.stopPropagation();
+                let $cb = $(this), $a = $cb.closest('a');
+                $a.trigger('click');
+            });
+        });
     };
 </script>
 
