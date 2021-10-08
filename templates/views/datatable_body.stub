@@ -9,7 +9,7 @@
                 'width' => '100%',
                 'class' => 'table table-bordered table-hover dataTable',
                 'id' => '$MODEL_NAME_CAMEL$-datatable',
-                'style' => 'border-collapse: collapse !important;'
+                'style' => 'table-layout:fixed; border-collapse: collapse !important;'
             ])
         !!}
     </div>

@@ -65,21 +65,11 @@
         <a href="#" class="brand-link">
             <img src="/vendor/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">AdminLTE 3</span>
+            <span class="brand-text font-weight-light">App name</span>
         </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
-            <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="/vendor/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
-                </div>
-            </div>
-
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -113,14 +103,6 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="/vendor/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $.widget.bridge('uibutton', $.ui.button)
-</script>
 <!-- Bootstrap 4 -->
 <script src="/vendor/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
@@ -151,6 +133,13 @@
 
 <!-- Common -->
 <script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.widget.bridge('uibutton', $.ui.button)
+
     const defaultConfirmOptions = {
         mainText: "@lang("crud.are_you_sure")",
         detailText: "@lang("crud.confirm_delete_text")",
@@ -158,8 +147,7 @@
         agree: "@lang("crud.agree")",
         icon: "warning",
     }
-</script>
-<script type="text/javascript">
+
     const BAD_PAYLOAD = 422;
     const UNAUTHENTICATED = 401;
     const FORBIDDEN = 403;
@@ -264,6 +252,29 @@
         });
     };
 
+    const sendAjaxWithoutNotify = (url, data, type = 'get', options = null) => {
+        const ajaxOptions = {
+            ...defaultAjaxOptions,
+            onSuccess: (resp, table, modal) => {
+                console.log('ok');
+            }
+        }
+        if (options === null) options = ajaxOptions;
+        else options = mergeAjaxOptions(options, ajaxOptions);
+
+        $.ajax({
+            url: url,
+            type: type,
+            data: data,
+            beforeSend: options.onBeforeSend,
+            success: function (resp) {
+                options.onSuccess(resp, options.table, options.modal);
+            },
+            error: options.onError,
+            complete: options.onCompleted
+        });
+    }
+
     const sendFormAjax = (jQueryForm, options = null) => {
         const ajaxOptions = {
             ...defaultAjaxOptions,
@@ -319,6 +330,7 @@
 
             if ((!jqueryObj.hasClass('ignore-reset')) && (!jqueryObj.hasClass('no-reset')) && (jqueryObj.attr('type') !== 'checkbox')) jqueryObj.val(value);
         });
+
         form.find('select').each(function (index, ele) {
             let jqueryObj = $(ele);
             let value = jqueryObj.data('defaultValue') !== null ? jqueryObj.data('defaultValue') : null;
@@ -326,6 +338,7 @@
                 jqueryObj.val(value);
                 if (jqueryObj.hasClass('select2')) jqueryObj.trigger('change');
             }
+            if (jqueryObj.hasClass('duallistbox')) jqueryObj.bootstrapDualListbox('refresh', true);
         });
     };
 
@@ -340,6 +353,11 @@
         return res;
     };
 
+    const htmlDecode = (input) => {
+        let doc = new DOMParser().parseFromString(input, "text/html");
+        return doc.documentElement.textContent;
+    }
+
     const fillData = (form, data, htmlType, handler) => {
         form.find(htmlType).each(function (index, ele) {
             let jqueryObj = $(ele);
@@ -347,6 +365,9 @@
                 let dataField = jqueryObj.attr('data-column');
                 let attrs = dataField.split(".");
                 let value = getValueByAttr(data, attrs);
+                if (typeof value === 'string' || value instanceof String) {
+                    value = htmlDecode(value);
+                }
                 handler(jqueryObj, value);
             }
         });
@@ -369,8 +390,8 @@
 
     const fillSelectFunc = (jqueryObj, value) => {
         jqueryObj.val(value);
-        if (jqueryObj.hasClass('select2'))
-            jqueryObj.trigger('change');
+        if (jqueryObj.hasClass('select2')) jqueryObj.trigger('change');
+        if (jqueryObj.hasClass('duallistbox')) jqueryObj.bootstrapDualListbox('refresh', true);
     };
 
     const fillEditForm = (data, form, key = "id") => {

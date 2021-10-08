@@ -1,14 +1,14 @@
 <div class='btn-group'>
-{{--    <a href="{{ route('$MODEL_NAME_PLURAL_CAMEL$.show', $id) }}" class='btn btn-default btn-xs datatable-action'>--}}
+{{--    <a href="{{ route('$MODEL_NAME_PLURAL_DASHED$.show', $id) }}" class='btn btn-default btn-xs datatable-action'>--}}
 {{--        <i class="far fa-eye"></i>--}}
 {{--    </a>--}}
-    <button class='btn btn-primary btn-xs datatable-action' onclick="editRecord(this, $MODEL_NAME_CAMEL$EditForm)">
+    <button class='btn btn-primary btn-xs datatable-action' onclick="editRecord(this, $MODEL_NAME_PLURAL_DASHED$EditForm)">
         <i class="fas fa-edit"></i>
     </button>
 
     <button
         class='btn btn-danger btn-xs datatable-action'
-        onclick="deleteRecord(this, '{{route("$MODEL_NAME_PLURAL_CAMEL$.destroy", "%s")}}', true, )"
+        onclick="deleteRecord(this, '{{route("$MODEL_NAME_PLURAL_DASHED$.destroy", "%s")}}', true, )"
     >
         <i class="fas fa-trash-alt"></i>
     </button>
