@@ -12,6 +12,25 @@
         table > tbody > tr.selected_row {
             background-color: #2ee4ff !important;
         }
+        .form-control:disabled, .form-control[readonly] {
+            background-color: #ffffff !important;
+            opacity: 1;
+        }
+
+        select[readonly].select2-hidden-accessible + .select2-container {
+            pointer-events: none;
+            touch-action: none;
+
+            .select2-selection {
+                background: #eee;
+                box-shadow: none;
+            }
+
+            .select2-selection__arrow,
+            .select2-selection__clear {
+                display: none;
+            }
+        }
     </style>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"

@@ -42,8 +42,8 @@
                 <div class="text-uppercase text-center rounded-circle text-bold"
                       style="background-color: #7c86f3; display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px">
                     <span class="text-white" style="margin-left: -1px;margin-top: -3px;">{{
-                        substr(implode("", array_map(function ($word) {
-                            return $word[0];
+                        mb_substr(implode("", array_map(function ($word) {
+                            return mb_substr($word, 0, 1);
                         }, explode(' ', \Illuminate\Support\Facades\Auth::user()->name))), 0, 3)
                     }}</span>
                 </div>
