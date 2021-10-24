@@ -50,13 +50,15 @@
                 <span class="font-weight-bold text-dark p-1">{{\Illuminate\Support\Facades\Auth::user()->name}}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-md dropdown-menu-right">
-                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>
-                    My Profile</a>
+                @if(\Illuminate\Support\Facades\Route::has('users.profile'))
+                <a class="dropdown-item" href="{{route('users.profile')}}"><i class="ti-user me-1 ms-1"></i>
+                    @lang('auth.profile')</a>
+                @endif
                 <div class="dropdown-divider"></div>
                 <form id="logout_form" method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a class="dropdown-item btn" href="#" onclick="document.getElementById('logout_form').submit()">
-                        <i class="fa fa-power-off me-1 ms-1"></i> Logout
+                        <i class="fa fa-power-off me-1 ms-1"></i> @lang('auth.sign_out')
                     </a>
                 </form>
             </ul>
