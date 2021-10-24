@@ -538,7 +538,7 @@
         if (rootElement === null) rootElement = $('body');
 
         // select2
-        $(rootElement).find('input.select2').select2({
+        $(rootElement).find('select.select2').select2({
             theme: 'bootstrap4'
         });
 
