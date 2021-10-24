@@ -140,6 +140,8 @@
 <script src="/vendor/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="/vendor/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="/vendor/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- Summernote -->
 <script src="/vendor/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
@@ -487,6 +489,85 @@
         }
     };
 
+
+    const onSwitchSuccess = (resp, ele, originalState) => {
+        showNotificationFromResponse(resp);
+        if (!resp.success) {
+            if (ele !== null) {
+                ele.bootstrapSwitch('state', originalState, true)
+            }
+        }
+    };
+
+    const onSwitchError = (error, ele, originalState) => {
+        showNotificationFromError(error);
+        if (ele !== null) {
+            ele.bootstrapSwitch('state', originalState, true)
+        }
+    };
+
+    const onSwitchChange = (event, state) => {
+        let ele = $(event.target);
+        let url = ele.data('url');
+        let activeColumn = ele.data('activeColumn');
+        let onValue = ele.data('toggleOnValue');
+        let offValue = ele.data('toggleOffValue');
+        let value = state ? onValue : offValue;
+        let data = {
+            "column": activeColumn,
+            "value": value,
+            "_method": "PUT"
+        };
+        sendAjax(
+            url,
+            data,
+            'post',
+            {
+                onSuccess: function (resp, table, modal) {
+                    onSwitchSuccess(resp, ele, !state);
+                },
+                onError: function (error) {
+                    onSwitchError(error, ele, !state);
+                }
+            }
+        )
+        return true;
+    };
+
+    const initCommonElements = (rootElement = null) => {
+        if (rootElement === null) rootElement = $('body');
+
+        // select2
+        $(rootElement).find('input.select2').select2({
+            theme: 'bootstrap4'
+        });
+
+        // bootstrap-switch
+        $(rootElement).find("input[data-bootstrap-switch]").each(function(){
+            $(this).bootstrapSwitch('state', $(this).prop('checked'));
+        })
+
+        // DatePicker
+        $(rootElement).find('div.vdate-element').datetimepicker({
+            icons: { time: 'far fa-clock' },
+            format: 'YYYY-MM-DD',
+            useCurrent: true
+        })
+
+        // DateTimePicker
+        $(rootElement).find('div.vdatetime-element').datetimepicker({
+            icons: { time: 'far fa-clock' },
+            format: 'YYYY-MM-DD HH:mm:ss',
+            useCurrent: true
+        })
+    }
+
+    const drawCallback = (settings, fnDrawCallBack = null) => {
+        let tableElement = settings.nTable;
+        if (fnDrawCallBack === null) fnDrawCallBack = initCommonElements;
+        fnDrawCallBack(tableElement)
+    };
+
     const fnRowCallBack = (ele, data, rowIndex, selectedRows) => {
         let row = $(ele);
         if ($.inArray(data.id, selectedRows) !== -1) {
@@ -502,6 +583,7 @@
 
         $(tableSelector).on('click', 'tbody tr', function (evt) {
             if ($(evt.target).closest('button').hasClass('datatable-action')) return;
+            if ($(evt.target).closest('td').hasClass('datatable-action')) return;
 
             let id = table.row(this).data().id;
             let index = $.inArray(id, selectedRows);
@@ -550,9 +632,7 @@
 
 <script type="text/javascript">
     $(document).ready(function (evt) {
-        $('.select2').select2({
-            theme: 'bootstrap4'
-        });
+        initCommonElements();
 
         setInterval(function() {
             $('.change-color')
