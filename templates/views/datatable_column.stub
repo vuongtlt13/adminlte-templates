@@ -5,7 +5,8 @@ $TABS$    'searchable' => $SEARCHABLE$,
 $TABS$    'orderable' => $ORDERABLE$,
 $TABS$    'exportable' => $EXPORTABLE$,
 $TABS$    'printable' => $PRINTABLE$,
+$TABS$    'className' => '$CSS_CLASS$',
 $TABS$    'attributes' => [
-$TABS$        'class' => '$CSS_CLASS$'
+$TABS$        'class' => 'text-center'
 $TABS$    ],
 $TABS$]))
