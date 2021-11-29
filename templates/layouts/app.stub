@@ -9,6 +9,26 @@
     <title>{{ config('app.name') }}</title>
 
     <style>
+        /*FixedHeader*/
+        div.tableFixHead          { overflow: auto;}
+        div.tableFixHead thead th {
+            position: sticky !important;
+            top: 0;
+            z-index: 1;
+            line-height: 2;
+            background-color: #8bc0e6;
+        }
+
+        /* Just common table stuff. Really. */
+        div.tableFixHead table  { border-collapse: collapse; width: 100%; }
+        div.tableFixHead th, td { padding: 8px 16px; }
+        div.tableFixHead th     { background:#ffffff; }
+
+        .table-70 {
+            max-height: 70vh !important;
+            overflow-y: auto !important;
+        }
+
         table > tbody > tr.selected_row {
             background-color: #2ee4ff !important;
         }
@@ -392,6 +412,46 @@
                 handler(jqueryObj, value);
             }
         });
+    };
+
+    const countColumn = (ele, index) =>{
+        return ele.DataTable().data().length;
+    };
+
+    const sumColumn = (ele, index) =>{
+        let total = 0;
+        ele.find('tbody tr').each(function() {
+            let value = parseNumber($('td', this).eq(index).text());
+            total += value;
+        });
+        return formatNumber(total, 0);
+    };
+
+    const initFooter = (tableElement) => {
+        let footer = $('<tfoot style="font-weight: bold"></tfoot>').empty();
+        let tr = $('<tr></tr>')
+        tableElement.find('thead tr th').map((index, ele) => {
+            if (index === 0) tr.append('<td>Tổng cộng</td>');
+            else {
+                if ($(ele).hasClass('countable')) {
+                    let unit = $(ele).data('unit') || "";
+                    let count = countColumn(tableElement, index);
+                    tr.append(`<td class="text-center">${count} ${unit}</td>`);
+                } else if ($(ele).hasClass('summable')) {
+                    let total = sumColumn(tableElement, index);
+                    tr.append(`<td class="text-right">${total}</td>`);
+                }
+                else tr.append('<td> </td>');
+            }
+        });
+        footer.append(tr);
+        return footer;
+    };
+
+    const generateFooter = (obj) => {
+        let ele = $(obj[0]);
+        ele.find('tfoot').remove();
+        ele.append(initFooter(ele));
     };
 
     const fillTextAreaFunc = (jqueryObj, value) => {
