@@ -11,7 +11,7 @@
     <style>
         /*FixedHeader*/
         div.tableFixHead          { overflow: auto;}
-        div.tableFixHead thead th {
+        div.tableFixHead table.tableFixedHeader > thead th {
             position: sticky !important;
             top: 0;
             z-index: 1;
@@ -20,9 +20,10 @@
         }
 
         /* Just common table stuff. Really. */
-        div.tableFixHead table  { border-collapse: collapse; width: 100%; }
-        div.tableFixHead th, td { padding: 8px 16px; }
-        div.tableFixHead th     { background:#ffffff; }
+        div.tableFixHead table.tableFixedHeader { border-collapse: collapse; width: 100%; }
+        div.tableFixHead table.tableFixedHeader > th { padding: 8px 16px; }
+        div.tableFixHead table.tableFixedHeader > td { padding: 8px 16px; }
+        div.tableFixHead table.tableFixedHeader > th     { background:#ffffff; }
 
         .table-75 {
             max-height: 70vh !important;
@@ -696,6 +697,22 @@
             });
         });
     };
+
+    const currentStartDate = (ele) => {
+        try {
+            return $(ele).data('daterangepicker').startDate.format('YYYY-MM-DD');
+        } catch (error) {
+            return null;
+        }
+    }
+
+    const currentEndDate = (ele) => {
+        try {
+            return $(ele).data('daterangepicker').endDate.format('YYYY-MM-DD');
+        } catch (error) {
+            return null;
+        }
+    }
 </script>
 
 <!-- Ajax Form -->

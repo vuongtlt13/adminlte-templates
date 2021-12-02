@@ -3,12 +3,12 @@
 @section('content-header')
     <div class="container-fluid">
         <div class="row mb-2">
-            <div class="col-4">
+            <div class="col-5">
                 <h1>
                     @lang('$NS_LOCALE_PREFIX$models/$MODEL_NAME_CAMEL$.plural')
                 </h1>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <h1 class="float-right">
                     <button type="button" class="btn btn-block btn-primary float-right btnAddNew$MODEL_NAME$"
                             style="margin-top: -10px;margin-bottom: 5px"><i class="fas fa-plus"></i> @lang('crud.add_new')</button>

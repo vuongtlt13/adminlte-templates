@@ -7,7 +7,7 @@
         {!!
             $dataTable->table([
                 'width' => '100%',
-                'class' => 'table table-bordered table-hover dataTable',
+                'class' => 'table table-bordered table-hover dataTable tableFixedHeader',
                 'id' => '$MODEL_NAME_CAMEL$-datatable',
                 'style' => 'table-layout:fixed; border-collapse: collapse !important;'
             ])
