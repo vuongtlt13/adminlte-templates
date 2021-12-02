@@ -24,8 +24,23 @@
         div.tableFixHead th, td { padding: 8px 16px; }
         div.tableFixHead th     { background:#ffffff; }
 
+        .table-75 {
+            max-height: 70vh !important;
+            overflow-y: auto !important;
+        }
+
         .table-70 {
             max-height: 70vh !important;
+            overflow-y: auto !important;
+        }
+
+        .table-65 {
+            max-height: 65vh !important;
+            overflow-y: auto !important;
+        }
+
+        .table-60 {
+            max-height: 65vh !important;
             overflow-y: auto !important;
         }
 
