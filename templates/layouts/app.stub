@@ -496,16 +496,18 @@
         if (jqueryObj.hasClass('duallistbox')) jqueryObj.bootstrapDualListbox('refresh', true);
     };
 
-    const fillEditForm = (data, form, key = "id") => {
+    const fillEditForm = (data, form, key = ["id"]) => {
         let templateAction = form.data('templateAction');
-        form.attr('action', templateAction.format(data[key]));
+        let ids = [];
+        key.map((_key) => {ids.push(data[_key])});
+        form.attr('action', templateAction.format(...ids));
 
         fillData(form, data, 'textarea', fillTextAreaFunc);
         fillData(form, data, 'input', fillInputFunc);
         fillData(form, data, 'select', fillSelectFunc);
     };
 
-    const editRecord = (ele, editForm, key = "id") => {
+    const editRecord = (ele, editForm, key = ["id"]) => {
         let table = $(ele).closest('table').DataTable();
         let row = $(ele).closest('tr');
         let data = table.row(row).data();
@@ -529,7 +531,7 @@
 
     const deleteRecord = async (ele, uri, isConfirm = true, options = {}) => {
         let defaultOptions = {
-            key: 'id',
+            key: ['id'],
             additionalAttrs: {}
         }
 
@@ -553,10 +555,11 @@
             for (let k in additionalAttrs) {
                 data[k] = dataRow[additionalAttrs[k]];
             }
-            let id = dataRow[key];
+            let ids = [];
+            key.map((_key) => {ids.push(dataRow[_key])});
 
             sendAjax(
-                uri.format(id),
+                uri.format(...ids),
                 {
                     '_method': 'DELETE',
                     ...data
