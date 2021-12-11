@@ -721,6 +721,20 @@
             return null;
         }
     }
+
+    const toggleSelectAll = (container) => {
+        let tableElement = $(container).find('table');
+        let isSelected = tableElement.find('tbody tr.selected_row').length > 0;
+        if (isSelected) {
+            tableElement.find('tbody tr.selected_row').each((index, ele) => {
+                $(ele).find('td:first-child').trigger('click');
+            })
+        } else {
+            tableElement.find('tbody tr').each((index, ele) => {
+                $(ele).find('td:first-child').trigger('click');
+            })
+        }
+    };
 </script>
 
 <!-- Ajax Form -->
