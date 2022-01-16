@@ -26,5 +26,10 @@ class AdminLTETemplatesServiceProvider extends ServiceProvider
         $this->app->singleton('ViewMapping', function ($app) {
             return new ViewMapping();
         });
+
+        $this->app->singleton('ViewProcessor', function ($app) {
+            return new ViewProcessor();
+        });
+        
     }
 }
