@@ -11,14 +11,10 @@ class ViewProcessor extends Command {
     private $force = false;
     private $templateType = "";
 
-    /** @var CommandData */
-    private $commandData;
-
-    public function generateLayout(bool $isAPIMode = false, bool $force = false, CommandData $commandData) {
+    public function generateLayout(bool $isAPIMode = false, bool $force = false) {
         if (!$isAPIMode) {
             $this->apiMode = $isAPIMode;
             $this->force = $force;
-            $this->commandData = $commandData;
             $this->templateType = "adminlte-templates";
             $this->copyView();
             $this->publishPublicFiles();
