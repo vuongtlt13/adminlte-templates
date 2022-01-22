@@ -2,17 +2,24 @@
 
 namespace Vuongdq\AdminLTETemplates;
 use Illuminate\Console\Command;
+use Vuongdq\VLAdminTool\Common\CommandData;
 use Vuongdq\VLAdminTool\Utils\FileUtil;
 use Illuminate\Console\Concerns\InteractsWithIO;
 
 class ViewProcessor extends Command {
     private $apiMode = false;
     private $force = false;
+    private $templateType = "";
 
-    public function generateLayout(bool $isAPIMode = false, bool $force = false) {
+    /** @var CommandData */
+    private $commandData;
+
+    public function generateLayout(bool $isAPIMode = false, bool $force = false, CommandData $commandData) {
         if (!$isAPIMode) {
             $this->apiMode = $isAPIMode;
             $this->force = $force;
+            $this->commandData = $commandData;
+            $this->templateType = "adminlte-templates";
             $this->copyView();
             $this->publishPublicFiles();
         }
@@ -57,9 +64,8 @@ class ViewProcessor extends Command {
     private function publishPublicFiles()
     {
         $publicPath = public_path();
-        $templateType = config('vl_admin_tool.templates', 'adminlte-templates');
 
-        $tempaltePublicDir = get_templates_package_path($templateType) . "/public";
+        $tempaltePublicDir = get_templates_package_path($this->templateType) . "/public";
 
         $files = array_diff(scandir($tempaltePublicDir), array('.', '..'));
         foreach ($files as $fileOrFolder) {
