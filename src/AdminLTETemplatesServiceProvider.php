@@ -14,6 +14,8 @@ class AdminLTETemplatesServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadViewsFrom(__DIR__ . '/../views', 'adminlte-templates');
+
+        $this->app->register(ViewRouteProvider::class);
     }
 
     /**
